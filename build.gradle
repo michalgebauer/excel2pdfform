@@ -55,7 +55,12 @@ runtime {
 
 tasks.runtime.doLast {
     copy {
-        from file('nastavenia.txt'), file('vzor xls.xlsx'), file('Renzio analyza5_v3_TEMPLATE.pdf')
-        into file("$buildDir/image/bin")
+        from file('src/main/resources/excel2pdfform')
+        into file("$buildDir/image")
+    }
+
+    copy {
+        from file('files')
+        into file("$buildDir/image/files")
     }
 }

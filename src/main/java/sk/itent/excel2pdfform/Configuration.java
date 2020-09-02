@@ -22,8 +22,18 @@ public class Configuration {
         try (
                 FileInputStream fis = new FileInputStream(configFilePath);
                 Scanner sc = new Scanner(fis)) {
+            int lineNumber = 0;
             while (sc.hasNextLine()) {
-                String[] configurationLine = sc.nextLine().split(SPLIT_CHARACTER);
+                lineNumber++;
+                String line = sc.nextLine();
+                if (line == null || line.trim().equals("")) {
+                    continue;
+                }
+                String[] configurationLine = line.split(SPLIT_CHARACTER);
+                if (configurationLine.length != 2) {
+                    System.out.println("Nespravny zaznam v " + configFilePath + ", riadok " + lineNumber + ", hodnota: " + line);
+                    continue;
+                }
                 String key = configurationLine[0];
                 String value = configurationLine[1];
                 if (PDF_TEMPLATE_KEY.equals(key)) {

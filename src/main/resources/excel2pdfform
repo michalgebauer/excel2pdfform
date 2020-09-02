@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd "${DIR}"
+bin/java -jar lib/excel2pdfform-all.jar
